@@ -1,8 +1,18 @@
 # CougConnect
 Script and other stuff
 
-CCCleaning : First part of Data Cleaning - mostly the Day cleaning (aka 2021)
-Data Dictionary - As says on the tin - variables from REDCap, and ones added manually in Excel later (the imputted ones)
-CougConnectcleaningPart2 - Mostly cleaning the year ago (aka 2020) but some simple analysis of 2021 cleaning
-CougConnect_DATA_2021-02-05_1351.csv - First pull of REDCAP data. Not touched or fiddled with
-CougConnect_21621.csv- current working excel file for CougConnect. Manual excel variables were added in there
+CougConnect_DataDictionary_2021_02_05 - As says on the tin, has two sheets - 
+  First Sheet: All the variables from REDCap
+  Second Sheet: variables we are using and ones added manually in Excel later 
+  
+CougConnectDataCleaning - Data cleaning, Nuff said
+  uses CougConnect_DATA_2021-03-11_0907.csv as first, and then ends with CougConnect_May192021 excel file
+  
+CougConnectDataOutput- new variables, graphs, poisson, analysis
+  uses CougConnect_May192021manual as our starting
+  
+CougConnect_DATA_2021-03-11_0907.csv - First pull of REDCAP data. Not touched or fiddled with
+
+CougConnect_May192021.csv- Cleaned CougConnect Data
+
+CougConnect_May192021manual.csu - Cleaned CougConnect data with manual inputs (cleaned up multiple entries for contacts,etc)
