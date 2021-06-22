@@ -63,10 +63,12 @@ hist(CC$Total2021, right=F, breaks=23, main="Total Number of Contacts per Respon
 mean(CC$Total2021, na.rm=TRUE)
 #mean is 3.21 people/person
 median(CC$Total2021, na.rm = TRUE)
-#median is 2
+#median is 3
 sd(CC$Total2021, na.rm = TRUE)
 #sd of 2.67
 summary(CC$Total2021, na.rm = TRUE)
+# Min. 1st Qu.  Median    Mean   3rd Qu.   Max. 
+#0.000   1.000   3.000   3.218   4.000  22.000 
 #range 0-22
 #1qr=1, 3QR-4
 sum(CC$Total2021)
@@ -92,46 +94,48 @@ DF2 = data.frame(table(unlist(df2)))
 DF2$percent = prop.table(DF2$Freq)*100
 DF2
 sum(DF2$Freq)
-#Var1 Freq    percent
-#                        Bremerton WA    1  0.1166861
-#                            Camas WA    3  0.3500583
-#                                 Car    8  0.9334889
-#                           Colfax WA    1  0.1166861
-#                          Drive Thru    2  0.2333722
-#                                 Gym   13  1.5169195
-#                Health Care Facility   21  2.4504084
-#                                Home  359  41.8903151
-#                       Home and Car   12   1.4002334
-#               home and coffee shop    1   0.1166861
-#                     Home and Store    1   0.1166861
-#                Home and WSU Campus    3   0.3500583
-#         home, car, friend's garage    2   0.2333722
-# Home, grocery store, car, outdoors    1   0.1166861
-#                              Idaho    1   0.1166861
-#                   Medical Facility    1   0.1166861
-#                          Moscow ID   28   3.2672112
-#                             Office    2   0.2333722
-#                             Oregon    3   0.3500583
-#                              Other   12   1.4002334
-#                           Outdoors   40   4.6674446
-#                       Pet Facility    4   0.4667445
-#                           Pharmacy    1   0.1166861
-#                            Pullman   18   2.1003501
-#                     Pullman-Colfax    1   0.1166861
-#                         Pullman WA   13  1.5169195
-#                         Restaurant   29  3.3838973
-#                        Richland WA    8  0.9334889
-#                              Salon    2  0.2333722
-#                             School    8  0.9334889
-#                            Seattle    4  0.4667445
-#                                SEH   20  2.3337223
-#                    Spokane Area WA    6  0.7001167
-#                              Store   61  7.1178530
-#                       Vancouver WA    2  0.2333722
-#                          Wenatchee    1  0.1166861
-#                         WSU Campus   74  8.6347725
-#                        WSU Pullman   87 10.1516919
-#   WSU Pullman/Health Care Facility    3  0.3500583
+#858
+#                                 Var1 Freq    percent
+#1                        Bremerton WA    1  0.1165501
+#2                            Camas WA    3  0.3496503
+#3                                 Car    8  0.9324009
+#4                           Colfax WA    1  0.1165501
+#5                          Drive Thru    2  0.2331002
+#6                                 Gym   13  1.5151515
+#7                Health Care Facility   21  2.4475524
+#8                                Home  359 41.8414918
+#9                        Home and Car   12  1.3986014
+#10               home and coffee shop    1  0.1165501
+#11                     Home and Store    1  0.1165501
+#12                Home and WSU Campus    3  0.3496503
+#13         home, car, friend's garage    2  0.2331002
+#14 Home, grocery store, car, outdoors    1  0.1165501
+#15                              Idaho    1  0.1165501
+#16                   Medical Facility    1  0.1165501
+#17                          Moscow ID   28  3.2634033
+#18                             Office    2  0.2331002
+#19                             Oregon    3  0.3496503
+#20                              Other   12  1.3986014
+#21                           Outdoors   40  4.6620047
+#22                       Pet Facility    4  0.4662005
+#23                           Pharmacy    1  0.1165501
+#24                            Pullman   18  2.0979021
+#25                     Pullman-Colfax    1  0.1165501
+#26                         Pullman WA   13  1.5151515
+#27                         Restaurant   29  3.3799534
+#28                        Richland WA    8  0.9324009
+#29                              Salon    2  0.2331002
+#30                             School    9  1.0489510
+#31                            Seattle    4  0.4662005
+#32                                SEH   20  2.3310023
+#33                    Spokane Area WA    6  0.6993007
+#34                              Store   61  7.1095571
+#35                       Vancouver WA    2  0.2331002
+#36                          Wenatchee    1  0.1165501
+#37                         WSU Campus   74  8.6247086
+#38                        WSU Pullman   87 10.1398601
+#39   WSU Pullman/Health Care Facility    3  0.3496503
+
 
 #Plotting this
 b <-ggplot(DF2) + geom_point(size=4, color = "blue", mapping = aes(x=reorder(Var1, -Freq), y=Freq)) + xlim("Home" , "WSU Pullman", "WSU Campus", "Store", "Outdoors", "Restaurant", "Health Care Facility", "Pullman")
@@ -772,8 +776,9 @@ summary(NotPullman$TotalDiff)
 #-8.00    1.00    3.00    9.74    8.25  136.00 
 
 #Doing some cleaning for essential workers
-table(CC$essentialjobyn)
-#200 Non-essential, 61 essentail
+table(CC$essentialjobyn, useNA = 'always')
+#200 Non-essential, 61 essentail, 10 NA
+
 #Does this break down by Pullman/Not ?
 table(CC$essentialjobyn, CC$PullmanBoth, useNA = 'always')
 #      No Yes <NA>
@@ -1229,3 +1234,35 @@ summary(CC$AbsTotalDiff)
 #Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #0.00    1.00    4.00   15.03    8.50  501.00 
 
+#6-22-21
+#Looking at COVID testing/symptoms in the group. Just for table analysis
+
+#Have you been tested for COVID in the last 30 days
+table(CC$covid30,useNA = 'always')
+# Yes    No    NA   Total
+# 48     213   10   271
+#Of those 48, 46 wer negative, 1 prefered not to say, 1 didn't know yet
+
+#Were you tested for COVID before these past 30 days?
+table(CC$covidmonth,useNA = 'always')
+#  Yes   No   NA  Total
+# 138    123  10  271
+table(CC$covidmonthresult,useNA = 'always')
+#  Negative   Prefer not to say    Don't Know  <NA> 
+#  34         1                        1        235 
+
+#Have you ever tested positive for COVID?
+table(CC$positiveever,useNA = 'always')
+#Yes    No    prefer not to say    NA
+#10     247          2             12
+
+#What were people vaccinated against?
+#Influenza
+table(CC$vaccination___0,useNA = 'always')
+#Yes         No
+#206 (76%)   65 (24%)
+
+#COVID - this was before max vax was available
+table(CC$vaccination___1,useNA = 'always')
+#Yes         No
+#37 (14%)    234(86%)
